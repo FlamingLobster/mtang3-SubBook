@@ -2,7 +2,6 @@ package com.example.subbook;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,14 +25,15 @@ import java.util.ArrayList;
 public class SubBook implements Serializable{
     private static final String FILENAME = "data.sav";
     private ArrayList<Subscription> subs;
-    private ArrayAdapter<Subscription> adapter;
-    private Context context;
+    private transient Context context;
+    private transient ArrayAdapter<Subscription> adapter;
 
 
     public SubBook(Context context){
         this.subs = new ArrayList<Subscription>();
         this.context = context;
-        adapter = new ArrayAdapter<Subscription>(this.context, R.layout.list_item, this.subs);
+
+        adapter = new ArrayAdapter<Subscription>(this.context, R.layout.activity_main, R.id.subList, subs);
 
         loadFile();
     }
@@ -80,4 +80,10 @@ public class SubBook implements Serializable{
     public void adapterUpdate() {
         adapter.notifyDataSetChanged();
     }
+
+    public void addContext(Context context) {
+        this.context = context;
+    }
+
+
 }

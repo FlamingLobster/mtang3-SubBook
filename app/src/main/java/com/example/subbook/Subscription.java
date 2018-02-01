@@ -2,13 +2,14 @@ package com.example.subbook;
 
 import android.widget.EditText;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by Michael on 1/25/2018.
  */
 
-class Subscription {
+class Subscription implements Serializable{
     private String name;
     private String date;
     private String charge;

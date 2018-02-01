@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SubBook</string>
+    <string name="Name">Name</string>
 </resources>
