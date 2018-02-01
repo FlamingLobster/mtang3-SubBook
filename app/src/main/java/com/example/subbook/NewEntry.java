@@ -10,6 +10,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -28,14 +29,12 @@ class NewEntry extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_layout);
 
-        Intent intent = getIntent();
-        final SubBook subBook = (SubBook) intent.getSerializableExtra("subBook");
-        subBook.addContext(this);
+        final ArrayList<Subscription> subBook = new ArrayList<Subscription>();
 
-        nameText = (EditText) findViewById(R.id.nameField);
-        commentText = (EditText) findViewById(R.id.commentField);
-        chargeText = (EditText) findViewById(R.id.chargeField);
-        dateText = (EditText) findViewById(R.id.dateField);
+        nameText = findViewById(R.id.nameField);
+        commentText = findViewById(R.id.commentField);
+        chargeText = findViewById(R.id.chargeField);
+        dateText = findViewById(R.id.dateField);
 
         //https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext
         final Calendar myCalendar = Calendar.getInstance();
@@ -76,12 +75,12 @@ class NewEntry extends Activity {
             @Override
             public void onClick(View view) {
                 setResult(RESULT_OK);
-                subBook.newEntry(nameText.getText().toString(),
+                subBook.add(new Subscription(nameText.getText().toString(),
                                  commentText.getText().toString(),
                                  chargeText.getText().toString(),
                                  dateText.getText().toString()
-                                );
-                subBook.saveFile();
+                                ));
+                //saveFile();
                 finish();
             }
         });
