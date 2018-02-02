@@ -21,4 +21,16 @@ class Subscription implements Serializable{
         this.charge = chargeText;
         this.date = dateText;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getCharge() {
+        return charge;
+    }
 }

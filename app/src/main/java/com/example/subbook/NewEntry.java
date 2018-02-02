@@ -2,13 +2,24 @@ package com.example.subbook;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,6 +31,8 @@ import java.util.Locale;
 
 class NewEntry extends Activity {
 
+    private static final String FILENAME = "data.sav";
+    private ArrayList<Subscription> subBook;
     private EditText nameText;
     private EditText commentText;
     private EditText chargeText;
@@ -29,8 +42,7 @@ class NewEntry extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_layout);
 
-        final ArrayList<Subscription> subBook = new ArrayList<Subscription>();
-
+        loadFile();
         nameText = findViewById(R.id.nameField);
         commentText = findViewById(R.id.commentField);
         chargeText = findViewById(R.id.chargeField);
@@ -69,8 +81,7 @@ class NewEntry extends Activity {
             }
         });
 
-
-        Button saveButton = (Button) findViewById(R.id.saveButton);
+        Button saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,11 +91,42 @@ class NewEntry extends Activity {
                                  chargeText.getText().toString(),
                                  dateText.getText().toString()
                                 ));
-                //saveFile();
+
+                saveFile();
                 finish();
             }
         });
     }
 
+    public void saveFile() {
+        try {
+            FileOutputStream fileOut = this.getApplicationContext().openFileOutput(FILENAME, this.MODE_PRIVATE);
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fileOut));
+
+            Gson gson = new Gson();
+            gson.toJson(subBook, out);
+            out.flush();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void loadFile() {
+        try {
+            FileInputStream fileIn = this.getApplicationContext().openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fileIn));
+
+            Gson gson = new Gson();
+            Type subToken = new TypeToken<ArrayList<Subscription>>(){}.getType();
+            subBook = gson.fromJson(in, subToken);
+
+        } catch (FileNotFoundException e) {
+            subBook = new ArrayList<Subscription>();
+        }
+    }
 
 }
