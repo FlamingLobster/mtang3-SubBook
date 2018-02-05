@@ -36,11 +36,14 @@ public class SubBook implements Serializable{
     }
 
     public void remove(int index){
+        totalCharge -= Float.parseFloat(subBook.get(index).getCharge());
         subBook.remove(index);
     }
 
     public void set(int index, Subscription subscription){
+        totalCharge -= Float.parseFloat(subBook.get(index).getCharge());
         subBook.set(index, subscription);
+        totalCharge += Float.parseFloat(subscription.getCharge());
     }
 
     public Subscription getSubscription(int index){

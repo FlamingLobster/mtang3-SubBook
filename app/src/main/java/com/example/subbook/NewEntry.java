@@ -24,6 +24,10 @@ class NewEntry extends Activity {
     private EditText chargeText;
     private EditText dateText;
 
+    private String nameString;
+    private String chargeString;
+    private String dateString;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_layout);
@@ -31,6 +35,7 @@ class NewEntry extends Activity {
         subBook = new SubBook();
         subBook.loadFile(getApplicationContext());
         nameText = findViewById(R.id.nameField);
+
         commentText = findViewById(R.id.commentField);
         chargeText = findViewById(R.id.chargeField);
         dateText = findViewById(R.id.dateField);
@@ -85,24 +90,25 @@ class NewEntry extends Activity {
             @Override
             public void onClick(View view) {
                 setResult(RESULT_OK);
-                if(editFlag) {
+                if (editFlag) {
                     subBook.set(index, new Subscription(nameText.getText().toString(),
-                                                        commentText.getText().toString(),
-                                                        chargeText.getText().toString(),
-                                                        dateText.getText().toString()
+                            commentText.getText().toString(),
+                            chargeText.getText().toString(),
+                            dateText.getText().toString()
                     ));
                     subBook.saveFile(getApplicationContext());
                     finish();
                 } else {
                     subBook.add(new Subscription(nameText.getText().toString(),
-                                                 commentText.getText().toString(),
-                                                 chargeText.getText().toString(),
-                                                 dateText.getText().toString()
+                            commentText.getText().toString(),
+                            chargeText.getText().toString(),
+                            dateText.getText().toString()
                     ));
                     subBook.saveFile(getApplicationContext());
                     finish();
                 }
             }
+
         });
 
         Button deleteButton = findViewById(R.id.deleteButton);
