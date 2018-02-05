@@ -39,7 +39,7 @@ public class SubDisplayAdapter extends ArrayAdapter<Subscription> {
 
             name.setText(subscription.getName());
             date.setText(subscription.getDate());
-            charge.setText(subscription.getCharge());
+            charge.setText("$"+subscription.getCharge());
         }
 
         return convertView;

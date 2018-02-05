@@ -1,0 +1,53 @@
+[33mcommit b7b78b8d44ff6fe440489c1b9da678626d17a882[m
+Author: FlamingLobster <mikeekimy@gmail.com>
+Date:   Mon Feb 5 07:59:38 2018 -0700
+
+    minor fixes
+
+[33mcommit c4f60e1f2dcd346046e4147fc4bc5b97e72c3706[m
+Author: FlamingLobster <mikeekimy@gmail.com>
+Date:   Mon Feb 5 05:37:12 2018 -0700
+
+    added total
+
+[33mcommit 36cc160925f01aae5a4b167c45b207efe2051196[m
+Author: FlamingLobster <mikeekimy@gmail.com>
+Date:   Mon Feb 5 00:10:39 2018 -0700
+
+    made edit prettier
+
+[33mcommit 2352dc34c2490ddf10d7d0096fc9e74824df8ba2[m
+Author: FlamingLobster <mikeekimy@gmail.com>
+Date:   Mon Feb 5 00:00:17 2018 -0700
+
+    added SubBook class
+
+[33mcommit ca165d74a9b51f2c218637230bd2e07ae05b4abe[m
+Author: FlamingLobster <mikeekimy@gmail.com>
+Date:   Sun Feb 4 23:08:59 2018 -0700
+
+    all major functionalities added
+
+[33mcommit 1466392108b14a5fee2b2e3589d5794aa593726e[m
+Author: FlamingLobster <mikeekimy@gmail.com>
+Date:   Thu Feb 1 17:50:31 2018 -0700
+
+    adapter working
+
+[33mcommit 09145c6a0e83199429b977e5e4b08d6fbda1dee6[m
+Author: FlamingLobster <mikeekimy@gmail.com>
+Date:   Thu Feb 1 16:47:51 2018 -0700
+
+    removed SubBook class
+
+[33mcommit 701a7bfff068b1151ac307f4c791582db8bc7b16[m
+Author: FlamingLobster <mikeekimy@gmail.com>
+Date:   Wed Jan 31 17:33:18 2018 -0700
+
+    added datePicker for dates
+
+[33mcommit 63a08ee54ae2951365061c5dd9e0cfa3a618f666[m
+Author: FlamingLobster <mikeekimy@gmail.com>
+Date:   Thu Jan 25 15:24:47 2018 -0700
+
+    ToDo: delete button in edit_layout
