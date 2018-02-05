@@ -31,8 +31,7 @@ import java.util.Locale;
 
 class NewEntry extends Activity {
 
-    private static final String FILENAME = "data.sav";
-    private ArrayList<Subscription> subBook;
+    private SubBook subBook;
     private EditText nameText;
     private EditText commentText;
     private EditText chargeText;
@@ -42,7 +41,8 @@ class NewEntry extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_layout);
 
-        loadFile();
+        subBook = new SubBook();
+        subBook.loadFile(getApplicationContext());
         nameText = findViewById(R.id.nameField);
         commentText = findViewById(R.id.commentField);
         chargeText = findViewById(R.id.chargeField);
@@ -96,7 +96,7 @@ class NewEntry extends Activity {
                                                         chargeText.getText().toString(),
                                                         dateText.getText().toString()
                     ));
-                    saveFile();
+                    subBook.saveFile(getApplicationContext());
                     finish();
                 } else {
                     subBook.add(new Subscription(nameText.getText().toString(),
@@ -104,7 +104,7 @@ class NewEntry extends Activity {
                                                  chargeText.getText().toString(),
                                                  dateText.getText().toString()
                     ));
-                    saveFile();
+                    subBook.saveFile(getApplicationContext());
                     finish();
                 }
             }
@@ -118,43 +118,12 @@ class NewEntry extends Activity {
                 if(editFlag){
                     System.out.println("index"+index);
                     subBook.remove(index);
-                    saveFile();
+                    subBook.saveFile(getApplicationContext());
                     finish();
                 } else {
                     finish();
                 }
             }
         });
-    }
-
-    public void saveFile() {
-        try {
-            FileOutputStream fileOut = this.getApplicationContext().openFileOutput(FILENAME, this.MODE_PRIVATE);
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fileOut));
-
-            Gson gson = new Gson();
-            gson.toJson(subBook, out);
-            out.flush();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private void loadFile() {
-        try {
-            FileInputStream fileIn = this.getApplicationContext().openFileInput(FILENAME);
-            BufferedReader in = new BufferedReader(new InputStreamReader(fileIn));
-
-            Gson gson = new Gson();
-            Type subToken = new TypeToken<ArrayList<Subscription>>(){}.getType();
-            subBook = gson.fromJson(in, subToken);
-
-        } catch (FileNotFoundException e) {
-            subBook = new ArrayList<Subscription>();
-        }
     }
 }

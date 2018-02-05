@@ -23,9 +23,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String FILENAME = "data.sav";
     private ListView subDisplay;
-    private ArrayList<Subscription> subBook;
+    private SubBook subBook;
     private SubDisplayAdapter adapter;
 
     @Override
@@ -33,14 +32,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        subBook = new ArrayList<Subscription>();
+        subBook = new SubBook();
         subDisplay = findViewById(R.id.subList);
         subDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
                 Intent editEntry = new Intent(getApplicationContext(), NewEntry.class);
                 editEntry.putExtra("editFlag", true);
-                editEntry.putExtra("subscriptionIndex", i);
+                editEntry.putExtra("subscriptionIndex", index);
                 startActivity(editEntry);
             }
         });
@@ -59,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onStart() {
         super.onStart();
-        loadFile();
-        adapter = new SubDisplayAdapter(this, R.layout.subscription_display_layout, subBook);
+        subBook.loadFile(getApplicationContext());
+        adapter = new SubDisplayAdapter(this, R.layout.subscription_display_layout, subBook.getBook());
         subDisplay.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -68,18 +67,5 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         adapter.notifyDataSetChanged();
-    }
-
-    private void loadFile() {
-        try {
-            FileInputStream fileIn = getApplicationContext().openFileInput(FILENAME);
-            BufferedReader in = new BufferedReader(new InputStreamReader(fileIn));
-            Gson gson = new Gson();
-            Type subToken = new TypeToken<ArrayList<Subscription>>(){}.getType();
-            subBook = gson.fromJson(in, subToken);
-
-        } catch (FileNotFoundException e) {
-            subBook = new ArrayList<Subscription>();
-        }
     }
 }
