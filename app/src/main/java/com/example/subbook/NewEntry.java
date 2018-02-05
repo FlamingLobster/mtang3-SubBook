@@ -51,6 +51,14 @@ class NewEntry extends Activity {
         final Boolean editFlag = getIntent().getBooleanExtra("editFlag", false);
         final int index = getIntent().getIntExtra("subscriptionIndex",0);
 
+        if(editFlag){
+            Subscription subscription = subBook.getSubscription(index);
+            nameText.setText(subscription.getName());
+            commentText.setText(subscription.getComment());
+            chargeText.setText(subscription.getCharge());
+            dateText.setText(subscription.getDate());
+        }
+
         //https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext
         final Calendar myCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {

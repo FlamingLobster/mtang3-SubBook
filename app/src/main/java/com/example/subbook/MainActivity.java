@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton newEntryButton = findViewById(R.id.newEntryButton);
         newEntryButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent newEntry = new Intent(getApplicationContext(), NewEntry.class);

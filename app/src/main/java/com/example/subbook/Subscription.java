@@ -34,5 +34,5 @@ class Subscription implements Serializable{
         return charge;
     }
 
-    public String getString() { return comment; }
+    public String getComment() { return comment; }
 }
