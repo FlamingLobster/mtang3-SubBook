@@ -1,9 +1,6 @@
 package com.example.subbook;
 
-import android.widget.EditText;
-
 import java.io.Serializable;
-import java.sql.Date;
 
 /**
  * Created by Michael on 1/25/2018.

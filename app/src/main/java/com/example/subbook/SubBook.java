@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class SubBook implements Serializable{
     private ArrayList<Subscription> subBook;
     private static final String FILENAME = "data.sav";
-
+    private float totalCharge;
 
     public SubBook(){
         subBook = new ArrayList<>();
@@ -32,6 +32,7 @@ public class SubBook implements Serializable{
 
     public void add(Subscription subscription){
         subBook.add(subscription);
+        totalCharge += Float.parseFloat(subscription.getCharge());
     }
 
     public void remove(int index){
@@ -48,6 +49,10 @@ public class SubBook implements Serializable{
 
     public ArrayList<Subscription> getBook() {
         return subBook;
+    }
+
+    public float getTotalCharge(){
+        return totalCharge;
     }
 
     public void saveFile(Context context) {
@@ -75,8 +80,16 @@ public class SubBook implements Serializable{
             Type subToken = new TypeToken<ArrayList<Subscription>>(){}.getType();
             subBook = gson.fromJson(in, subToken);
 
+            calculateTotal();
         } catch (FileNotFoundException e) {
             subBook = new ArrayList<Subscription>();
+        }
+    }
+
+    private void calculateTotal() {
+        totalCharge = 0;
+        for(Subscription subscription : subBook) {
+            totalCharge += Float.parseFloat(subscription.getCharge());
         }
     }
 }

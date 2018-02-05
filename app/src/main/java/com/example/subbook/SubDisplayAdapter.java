@@ -12,10 +12,7 @@ import java.util.List;
 
 /**
  * Created by Michael on 2/1/2018.
-<<<<<<< HEAD
  * https://stackoverflow.com/questions/8166497/custom-adapter-for-list-view
-=======
->>>>>>> d8dea50af174b168e9eb35ca37af7c370b017d24
  */
 
 public class SubDisplayAdapter extends ArrayAdapter<Subscription> {
@@ -28,25 +25,23 @@ public class SubDisplayAdapter extends ArrayAdapter<Subscription> {
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
-        View v = convertView;
-
-        if (v == null) {
+        if (convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-            v = layoutInflater.inflate(resource, null);
+            convertView = layoutInflater.inflate(resource, null);
         }
 
-        Subscription p = getItem(position);
+        Subscription subscription = getItem(position);
 
-        if (p != null){
-            TextView name = v.findViewById(R.id.name_display);
-            TextView date = v.findViewById(R.id.date_display);
-            TextView charge = v.findViewById(R.id.charge_display);
+        if (subscription != null){
+            TextView name = convertView.findViewById(R.id.name_display);
+            TextView date = convertView.findViewById(R.id.date_display);
+            TextView charge = convertView.findViewById(R.id.charge_display);
 
-            name.setText(p.getName());
-            date.setText(p.getDate());
-            charge.setText(p.getCharge());
+            name.setText(subscription.getName());
+            date.setText(subscription.getDate());
+            charge.setText(subscription.getCharge());
         }
 
-        return v;
+        return convertView;
     }
 }
