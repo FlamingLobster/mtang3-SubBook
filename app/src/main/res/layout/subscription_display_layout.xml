@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:divider="@color/colorPrimaryDark"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:divider="@color/colorPrimaryDark">
+    android:showDividers="middle">
 
     <TextView
         android:id="@+id/name_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView" />
 
     <TextView
         android:id="@+id/date_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView" />
 
     <TextView
         android:id="@+id/charge_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="276dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView" />
 </LinearLayout>
