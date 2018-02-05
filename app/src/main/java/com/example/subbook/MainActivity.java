@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent editEntry = new Intent(getApplicationContext(), NewEntry.class);
+                editEntry.putExtra("editFlag", true);
+                editEntry.putExtra("subscriptionIndex", i);
                 startActivity(editEntry);
             }
         });
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent newEntry = new Intent(getApplicationContext(), NewEntry.class);
+                newEntry.putExtra("editFlag", false);
                 startActivity(newEntry);
             }
         });
@@ -77,9 +81,5 @@ public class MainActivity extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             subBook = new ArrayList<Subscription>();
         }
-    }
-
-    public void updateDisplay() {
-        adapter.notifyDataSetChanged();
     }
 }

@@ -12,7 +12,10 @@ import java.util.List;
 
 /**
  * Created by Michael on 2/1/2018.
+<<<<<<< HEAD
  * https://stackoverflow.com/questions/8166497/custom-adapter-for-list-view
+=======
+>>>>>>> d8dea50af174b168e9eb35ca37af7c370b017d24
  */
 
 public class SubDisplayAdapter extends ArrayAdapter<Subscription> {

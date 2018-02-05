@@ -15,7 +15,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:maxLength="20"
-        android:text="Name"
+        android:hint="Name"
         app:layout_constraintBottom_toTopOf="@+id/dateField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -29,7 +29,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:maxLength="30"
-        android:text="Comment"
+        android:hint="Comment"
         app:layout_constraintBottom_toTopOf="@+id/saveButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -47,7 +47,7 @@
         android:ems="10"
         android:focusable="false"
         android:inputType="date"
-        android:text="Date"
+        android:hint="Date"
         app:layout_constraintBottom_toTopOf="@+id/chargeField"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:text="Cost"
+        android:hint="Cost"
         app:layout_constraintBottom_toTopOf="@+id/commentField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -81,5 +81,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="352dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="144dp"
+        android:layout_marginTop="8dp"
+        android:text="Delete/Reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
 
 </android.support.constraint.ConstraintLayout>

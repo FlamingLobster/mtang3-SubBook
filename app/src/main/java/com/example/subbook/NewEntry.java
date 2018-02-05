@@ -48,6 +48,9 @@ class NewEntry extends Activity {
         chargeText = findViewById(R.id.chargeField);
         dateText = findViewById(R.id.dateField);
 
+        final Boolean editFlag = getIntent().getBooleanExtra("editFlag", false);
+        final int index = getIntent().getIntExtra("subscriptionIndex",0);
+
         //https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext
         final Calendar myCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -83,17 +86,43 @@ class NewEntry extends Activity {
 
         Button saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 setResult(RESULT_OK);
-                subBook.add(new Subscription(nameText.getText().toString(),
-                                 commentText.getText().toString(),
-                                 chargeText.getText().toString(),
-                                 dateText.getText().toString()
-                                ));
+                if(editFlag) {
+                    subBook.set(index, new Subscription(nameText.getText().toString(),
+                                                        commentText.getText().toString(),
+                                                        chargeText.getText().toString(),
+                                                        dateText.getText().toString()
+                    ));
+                    saveFile();
+                    finish();
+                } else {
+                    subBook.add(new Subscription(nameText.getText().toString(),
+                                                 commentText.getText().toString(),
+                                                 chargeText.getText().toString(),
+                                                 dateText.getText().toString()
+                    ));
+                    saveFile();
+                    finish();
+                }
+            }
+        });
 
-                saveFile();
-                finish();
+        Button deleteButton = findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                setResult(RESULT_OK);
+                if(editFlag){
+                    System.out.println("index"+index);
+                    subBook.remove(index);
+                    saveFile();
+                    finish();
+                } else {
+                    finish();
+                }
             }
         });
     }
@@ -128,5 +157,4 @@ class NewEntry extends Activity {
             subBook = new ArrayList<Subscription>();
         }
     }
-
 }
