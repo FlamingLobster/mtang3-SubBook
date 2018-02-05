@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018 Michael Tang, CMPUT301, University of Alberta - All Rights Reserved.
+ * you may use, distribute or modify this code under terms and conditions of Code of Students  Behavior at University of Alberta.
+ */
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {

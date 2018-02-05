@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018 Michael Tang, CMPUT301, University of Alberta - All Rights Reserved.
+ * you may use, distribute or modify this code under terms and conditions of Code of Students  Behavior at University of Alberta.
+ */
+
 package com.example.subbook;
 
 import android.content.Context;
@@ -19,6 +24,10 @@ import java.util.ArrayList;
 
 /**
  * Created by Michael on 2/4/2018.
+ *
+ * Container for ArrayList of Subscriptions
+ * implements getters and setters
+ * implements saveFile and loadFile for reading and writing to disk
  */
 
 public class SubBook implements Serializable{
@@ -26,38 +35,73 @@ public class SubBook implements Serializable{
     private static final String FILENAME = "data.sav";
     private float totalCharge;
 
+    /**
+     * constructor, initialize empty ArrayList
+     */
     public SubBook(){
         subBook = new ArrayList<>();
     }
 
+    /**
+     * Pushes new subscription to ArrayList
+     * @param subscription - the subscription being added
+     */
     public void add(Subscription subscription){
         subBook.add(subscription);
         totalCharge += Float.parseFloat(subscription.getCharge());
     }
 
+    /**
+     * remove a subscription from ArrayList by index
+     * @param index - the index of the subscription in the ArrayList
+     */
     public void remove(int index){
         totalCharge -= Float.parseFloat(subBook.get(index).getCharge());
         subBook.remove(index);
     }
 
+    /**
+     * set a subscription at an index to new values
+     * @param index - the index of the subscription in the ArrayList
+     * @param subscription - the new values to be saved
+     */
     public void set(int index, Subscription subscription){
         totalCharge -= Float.parseFloat(subBook.get(index).getCharge());
         subBook.set(index, subscription);
         totalCharge += Float.parseFloat(subscription.getCharge());
     }
 
+    /**
+     * getter for a single subscription by index
+     * @param index - the index of the subscription in the ArrayList
+     * @return Subscription
+     */
     public Subscription getSubscription(int index){
         return subBook.get(index);
     }
 
+    /**
+     * getter for the entire ArrayList of Subscription
+     * @return ArrayList
+     */
     public ArrayList<Subscription> getBook() {
         return subBook;
     }
 
-    public float getTotalCharge(){
+    /**
+     * getter for the total monthly cost
+     * @return the monthly cost
+     */
+    public float getTotalCharge() {
         return totalCharge;
     }
 
+    /**
+     * serialize ArrayList and write to file
+     * @param context - context of the caller
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public void saveFile(Context context) {
         try {
             FileOutputStream fileOut = context.openFileOutput(FILENAME, context.MODE_PRIVATE);
@@ -74,6 +118,11 @@ public class SubBook implements Serializable{
         }
     }
 
+    /**
+     * unserialize a file read in from disk
+     * @param context - context of the caller
+     * @throws FileNotFoundException
+     */
     public void loadFile(Context context) {
         try {
             FileInputStream fileIn = context.openFileInput(FILENAME);
@@ -89,6 +138,9 @@ public class SubBook implements Serializable{
         }
     }
 
+    /**
+     * iterate over ArrayList and sum up the cost from all item in the ArrayList
+     */
     private void calculateTotal() {
         totalCharge = 0;
         for(Subscription subscription : subBook) {

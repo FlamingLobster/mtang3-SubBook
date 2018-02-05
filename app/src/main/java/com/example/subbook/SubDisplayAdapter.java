@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018 Michael Tang, CMPUT301, University of Alberta - All Rights Reserved.
+ * you may use, distribute or modify this code under terms and conditions of Code of Students  Behavior at University of Alberta.
+ */
+
 package com.example.subbook;
 
 import android.content.Context;
@@ -12,7 +17,14 @@ import java.util.List;
 
 /**
  * Created by Michael on 2/1/2018.
+ *
+ * Reference:
+ * Rakhita
+ * November 17, 2011
+ * "Custom adapter for list view"
  * https://stackoverflow.com/questions/8166497/custom-adapter-for-list-view
+ *
+ * custom adapter for displaying list of subscriptions
  */
 
 public class SubDisplayAdapter extends ArrayAdapter<Subscription> {
